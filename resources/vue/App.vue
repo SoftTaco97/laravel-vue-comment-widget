@@ -1,8 +1,6 @@
 <template>
     <v-app>
-        <v-app-bar app color="blue lighten" class="white--text">
-            Laravel & Vue Comment Widget
-        </v-app-bar>
+        <app-header />
         <v-content>
             <v-container fluid>
                 <v-row>
@@ -10,14 +8,11 @@
                         cols="6" 
                         offset="3"
                     >
-                        <v-card
-                            :loading="loading"
-                            tile
-                        >   
-                            <v-card-title>
-                                Comments
-                            </v-card-title>
+                        <v-card :loading="loading" tile>
+                            <v-card-title>Comments</v-card-title>
+                            <!-- Comments -->
                             <v-card-text v-if="comments.length > 0">
+                                <!-- Comment -->
                                 <v-card
                                     v-for="(comment, index) in comments"
                                     :key="index"
@@ -34,58 +29,61 @@
                                         {{ comment.comment }}
                                     </v-card-text>
                                 </v-card>
+                                <!-- /comment -->
                             </v-card-text>
+                            <!-- /comments -->
+                            <!-- no comments -->
                             <v-card-text v-else-if="!loading">
                                 No comments yet.
                             </v-card-text>
+                            <!-- /no comments -->
+                            <!-- comment submission -->
                             <v-card-text>
                                 <v-card>
-                                    <v-card-title>
-                                        Submit a new comment
-                                    </v-card-title>
+                                    <v-card-title>Submit a new comment</v-card-title>
+                                    <!-- form -->
                                     <v-card-text>
                                         <v-form 
                                             ref="form"
                                             v-model="valid"
                                             @submit.prevent="postComment"
                                         >
-                                        <v-text-field
-                                            v-model="formData.name"
-                                            label="Name"
-                                            required
-                                            :rules="rules['name']"
-                                        />
-                                        <v-text-field
-                                            v-model="formData.email"
-                                            label="Email"
-                                            required
-                                            :rules="rules['email']"
-                                        />
-                                        <v-textarea
-                                            v-model="formData.comment"
-                                            label="Comment"
-                                            required
-                                            :rules="rules['comment']"
-                                        />
-                                        <v-btn
-                                            :disabled="!valid"
-                                            tile
-                                            raised
-                                            type="submit"
-                                        >
-                                            Submit Comment
-                                        </v-btn>
-                                    </v-form>
+                                            <v-text-field
+                                                v-model="formData.name"
+                                                label="Name"
+                                                required
+                                                :rules="rules['name']"
+                                            />
+                                            <v-text-field
+                                                v-model="formData.email"
+                                                label="Email"
+                                                required
+                                                :rules="rules['email']"
+                                            />
+                                            <v-textarea
+                                                v-model="formData.comment"
+                                                label="Comment"
+                                                required
+                                                :rules="rules['comment']"
+                                            />
+                                            <v-btn
+                                                :disabled="!valid"
+                                                tile
+                                                raised
+                                                type="submit"
+                                            >
+                                                Submit Comment
+                                            </v-btn>
+                                        </v-form>
+                                        <!-- /form -->
                                     </v-card-text>
+                                    <!-- comment submission -->
                                 </v-card>
                             </v-card-text>
                         </v-card>
                     </v-col>
                 </v-row>
             </v-container>
-        </v-content>
-        <v-footer color="blue lighten" class="white--text">
-            &copy; Jared Martinez 2020
             <v-snackbar 
                 v-model="showMessage"
                 :timeout="1000"
@@ -93,11 +91,14 @@
             >
                 {{ snackbarText }}
             </v-snackbar>
-        </v-footer>
+        </v-content>
+        <app-footer />
     </v-app>
 </template>
 
 <script>
+import AppFooter from './components/AppFooter.vue';
+import AppHeader from './components/AppHeader.vue';
 
 export default {
     name: 'App',
@@ -155,7 +156,6 @@ export default {
         },
         async postComment() {
             try {
-
                 const { status } = await this.$http.post('/comments/create', this.formData);
                 if(status === 204) {
                     // Push the comment into the page
@@ -176,6 +176,10 @@ export default {
                 this.showMessage = true;
             }
         }
+    },
+    components: {
+        AppFooter,
+        AppHeader
     }
 }
 </script>

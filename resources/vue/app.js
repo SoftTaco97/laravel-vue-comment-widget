@@ -3,10 +3,10 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import './bootstrap';
+import '../js/bootstrap';
 import Vue from 'vue';
-import App from './app/App.vue';
-import vuetify from './app/plugins/vuetify';
+import App from './App.vue';
+import vuetify from './plugins/vuetify';
 
 // Push axios into the vue application since it will make things simpler
 Vue.prototype.$http = window.axios;

@@ -11,4 +11,4 @@ const mix = require('laravel-mix');
  |
  */
 // Remove sass file because it wasn't being used
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/vue/app.js', 'public/js')
