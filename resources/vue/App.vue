@@ -132,6 +132,10 @@ export default {
         // Refresh feed every 30 seconds
         this.interval = setInterval(this.getLastFiveComments, 30000);
     },
+    beforeDestroy() {
+        // Remove the interval from running before the user moves
+        clearInterval(this.interval);
+    },
     methods: {
         async getLastFiveComments() {
             this.loading = true;
