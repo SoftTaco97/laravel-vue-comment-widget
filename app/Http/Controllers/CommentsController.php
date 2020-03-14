@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Comments;
 
-class CommentsController extends BaseController
+class CommentsController extends Controller
 {
     /**
      * Method for displaying the main comments page
