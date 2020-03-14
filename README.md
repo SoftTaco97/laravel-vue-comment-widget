@@ -15,12 +15,12 @@ This project is built using Laravel, Vue, and MySQL.
 
 Now that everything is set up, see the next sections for running the project in a development or production setting. 
 
-### Running Project in Development setting
+### Running the Project in a Development setting
 
 1. Open a terminal and run `npm run watch` to build the front end of the project.
 2. Open a second terminal and run `php artisan serve` to run the project
 
-### Running Project in Production setting
+### Running the Project in a Production setting
 
 1. Run `npm run prod` to build the front end for production. 
 2. Reference [this document](https://laravel.com/docs/master/deployment) on how to deploy the project. 
